@@ -80,7 +80,7 @@ void menu()
 
                 if (alt == 1)
                 {
-                    cadastrarClienteInicio(lista);
+                    lista = cadastrarClienteInicio(lista);
                 }
                 else if (alt == 2)
                 {
@@ -139,11 +139,11 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     scanf(" %s", novo->email);
     printf("\nVamos preencher o endereço!");
     printf("\nDigite a rua: ");
-    scanf(" %s", novo->end.rua);
+    scanf(" %[^\n]", novo->end.rua);
     printf("\nDigite o numero: ");
     scanf(" %d", &novo->end.numero);
     printf("\nDigite o bairro: ");
-    scanf(" %s", novo->end.bairro);
+    scanf(" %[^\n]", novo->end.bairro);
     printf("\nDigite o CEP: ");
     scanf(" %s", novo->end.cep);
     printf("Cadastro realizado com sucesso!");
