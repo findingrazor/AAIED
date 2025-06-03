@@ -18,7 +18,6 @@ void menu()
 
     do
     {
-
         printf("\n--------Bem-Vindo ao ED ERP!--------");
         printf("\nEste e o Modulo de Vendas!");
         printf("\nQual acao voce deseja realizar hoje? ");
@@ -117,6 +116,7 @@ void menu()
             printf("\nObrigado por utilizar o ED ERP, volte sempre!");
             break;
         }
+        fclose(f);
     } while (opcao != 'F');
 }
 
@@ -130,7 +130,7 @@ cliente *cadastrarClienteInicio(cliente *inicio)
 
     printf("\nVoce esta cadastrando um Cliente pelo inicio!");
     printf("\nDigite o nome do Cliente: ");
-    scanf(" %s", novo->nome);
+    scanf(" %[^\n]", novo->nome);
     printf("\nDigite o telefone do Cliente: ");
     scanf(" %s", novo->telefone);
     printf("\nDigite o CPF do Cliente: ");
@@ -147,6 +147,31 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     printf("\nDigite o CEP: ");
     scanf(" %s", novo->end.cep);
     printf("Cadastro realizado com sucesso!");
+
+    printf("\n--------------------------");
+    printf("\nDados Pessoais");
+    printf("\nId: %d", novo->idCliente);
+    printf("\nNome: %s", novo->nome);
+    printf("\nTelefone: %s", novo->telefone);
+    printf("\nCPF: %s", novo->cpf);
+    printf("\nEmail: %s", novo->email);
+    printf("\nEndereco");
+    printf("\nRua: %s", novo->end.rua);
+    printf("\nNumero: %d", novo->end.numero);
+    printf("\nBairro: %s", novo->end.bairro);
+    printf("\nCEP: %s", novo->end.cep);
+
+    FILE *f = fopen("dados.txt", "a");
+    if (f == NULL) {
+        printf("Erro ao abrir o arquivo para gravar!\n");
+        return inicio;
+    }
+
+    fprintf(f, "%d;%s;%s;%s;%s;%s;%d;%s;%s\n",
+            novo->idCliente, novo->nome, novo->telefone, novo->cpf, novo->email,
+            novo->end.rua, novo->end.numero, novo->end.bairro, novo->end.cep);
+
+    fclose(f);
     return novo;
 }
 
@@ -167,10 +192,10 @@ void listarClientes(cliente *lista)
         printf("\nCPF: %s", atual->cpf);
         printf("\nEmail: %s", atual->email);
         printf("\nEndereco");
-        printf("\nRua: ", atual->end.rua);
-        printf("\nNumero: ", atual->end.numero);
-        printf("\nBairro: ", atual->end.bairro);
-        printf("\nCEP: ", atual->end.cep);
+        printf("\nRua: %s", atual->end.rua);
+        printf("\nNumero: %d", atual->end.numero);
+        printf("\nBairro: %s", atual->end.bairro);
+        printf("\nCEP: %s", atual->end.cep);
 
         atual = atual->proximo;
     }
