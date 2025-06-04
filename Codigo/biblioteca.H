@@ -56,3 +56,9 @@ typedef struct pedido
 void menu();
 cliente* cadastrarClienteInicio(cliente* inicio);
 void listarClientes(cliente *lista);
+
+produto* cadastrarProdutoInicio(produto* inicio);
+void listarProduto(produto *listaProduto);
+produto* cadastrarProdutoFim(produto* inicio);
+produto *cadastrarProdutoMeio(produto *inicio, int posicao);
+
