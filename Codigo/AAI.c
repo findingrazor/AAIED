@@ -12,6 +12,7 @@ int main()
 
 void menu()
 {
+    produto *listaProduto = NULL;
     cliente *lista = NULL;
     char opcao;
     int alt;
@@ -101,6 +102,54 @@ void menu()
             break;
 
         case 'B':
+            printf("\nVoce esta no Gerenciamento de Produto, o que deseja fazer?");
+            printf("\n1) Cadastrar Produto");
+            printf("\n2) Alterar Produto");
+            printf("\n3) Excluir Produto");
+            printf("\n4) Listar Produto");
+
+            do {
+                printf("\nDigite a opcao desejada: ");
+                scanf("%d", &alt);
+                if (alt > 4 || alt < 1) {
+                    printf("\nOpcao invalida, por favor, digite um numero de 1 a 4 para escolher um modulo!");
+                }
+            } while (alt > 4 || alt < 1);
+
+            if (alt == 1) {
+
+                printf("\nVoce quer cadastrar um Produto pelo inicio, meio ou fim da lista?");
+                printf("\n1) Inicio");
+                printf("\n2) Meio");
+                printf("\n3) Fim");
+
+                do
+                {
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
+
+                    if (alt < 1 || alt > 3)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 3 para escolher uma acao do modulo!");
+                    }
+                } while (alt < 1 || alt > 3);
+
+                if (alt == 1) {
+                    listaProduto = cadastrarProdutoInicio(listaProduto);
+                } else if  (alt == 2){
+                    printf("\nEm que posicao da lista deseja colocar o novo produto? ");
+                    scanf("%d", &posicao);
+                    listaProduto = cadastrarProdutoMeio(listaProduto, posicao);
+                } else {
+                    listaProduto = cadastrarProdutoFim(listaProduto);
+                }
+
+            } else if (alt == 2) {
+
+            } else if (alt == 3) {
+            } else {
+                listarProduto(listaProduto);
+            }
             break;
 
         case 'C':
@@ -197,6 +246,117 @@ void listarClientes(cliente *lista)
         printf("\nBairro: %s", atual->end.bairro);
         printf("\nCEP: %s", atual->end.cep);
 
+        atual = atual->proximo;
+    }
+}
+
+produto *cadastrarProdutoInicio (produto *inicio) {
+    produto *novo = (produto *)malloc(sizeof(produto));
+
+    novo->idProduto = RANDO;
+    novo->proximo = inicio;
+    novo->anterior = NULL;
+
+    printf("\nVoce esta cadastrando um novo Produto pelo inicio da lista!");
+    printf("\nDigite o nome do Produto: ");
+    scanf("%s", novo->nome);
+    printf("Digite a midia do Produto: ");
+    scanf("%s", novo->midia);
+    printf("Digite o genero do Produto: ");
+    scanf("%s", novo->genero);
+    printf("Digite o preco do Produto: ");
+    scanf("%f", &novo->preco);
+    printf("Digite a quantidade do Produto no estoque: ");
+    scanf("%d", &novo->qtdeEstoque);
+    printf("Cadastro realizado com sucesso");
+    return novo;
+}
+
+produto *cadastrarProdutoFim(produto *inicio) {
+    produto *novo = (produto *)malloc(sizeof(produto));
+
+    novo->idProduto = RANDO;
+    novo->proximo = NULL;
+    novo->anterior = NULL;
+
+    printf("\nVoce esta cadastrando um novo Produto no fim da lista!");
+    printf("\nDigite o nome do Produto: ");
+    scanf("%s", novo->nome);
+    printf("Digite a midia do Produto: ");
+    scanf("%s", novo->midia);
+    printf("Digite o genero do Produto: ");
+    scanf("%s", novo->genero);
+    printf("Digite o preco do Produto: ");
+    scanf("%f", &novo->preco);
+    printf("Digite a quantidade do Produto no estoque: ");
+    scanf("%d", &novo->qtdeEstoque);
+
+    if (inicio == NULL) {
+        return novo;
+    }
+
+    produto *atual = inicio;
+    while (atual->proximo != NULL) {
+        atual = atual->proximo;
+    }
+    atual->proximo = novo;
+    novo->anterior = atual;
+    return inicio;
+}
+
+produto *cadastrarProdutoMeio(produto *inicio, int posicao) {
+    produto *novo = (produto *)malloc(sizeof(produto));
+
+    novo->idProduto = RANDO;
+    novo->proximo = NULL;
+    novo->anterior = NULL;
+
+    printf("\nVoce esta cadastrando um novo Produto no meio da lista!");
+    printf("\nDigite o nome do Produto: ");
+    scanf("%s", novo->nome);
+    printf("Digite a midia do Produto: ");
+    scanf("%s", novo->midia);
+    printf("Digite o genero do Produto: ");
+    scanf("%s", novo->genero);
+    printf("Digite o preco do Produto: ");
+    scanf("%f", &novo->preco);
+    printf("Digite a quantidade do Produto no estoque: ");
+    scanf("%d", &novo->qtdeEstoque);
+
+    produto *atual = inicio;
+    int contador = 1;
+
+    while (contador < posicao-1 && atual->proximo != NULL) {
+        atual = atual->proximo;
+        contador++;
+    }
+
+    novo->proximo = atual->proximo;
+    novo->anterior = atual;
+
+    if (atual->proximo != NULL) {
+        atual->proximo->anterior = novo;
+    }
+    atual->proximo = novo;
+    return inicio;
+}
+
+
+void listarProduto(produto *listaProduto) {
+    if (listaProduto == NULL) {
+        printf("\nLista vazia");
+        return;
+    }
+
+    produto *atual = listaProduto;
+    while (atual != NULL) {
+        printf("\n--------------------------");
+        printf("\nId: %d", atual->idProduto);
+        printf("\nNome: %s", atual->nome);
+        printf("\nMidia: %s", atual->midia);
+        printf("\nGenero: %s", atual->genero);
+        printf("\nPreco: %.2f", atual->preco);
+        printf("\nQuantidade em Estoque: %d", atual->qtdeEstoque);
         atual = atual->proximo;
     }
 }
