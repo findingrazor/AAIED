@@ -58,16 +58,25 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido);
 cliente* cadastrarClienteInicio(cliente* inicio);
 cliente* cadastrarClienteFim(cliente *inicio);
 cliente* cadastrarClienteMeio(cliente *inicio, int posicao);
+cliente *excluirClienteInicio(cliente *inicio);
+cliente *excluirClienteFim(cliente *inicio);
+cliente *excluirClienteMeio(cliente *inicio, int id);
 void listarClientes(cliente *lista);
 
 produto* cadastrarProdutoInicio(produto* inicio);
 produto* cadastrarProdutoFim(produto* inicio);
 produto* cadastrarProdutoMeio(produto *inicio, int posicao);
+produto *excluirProdutoInicio(produto *inicio);
+produto *excluirProdutoFim(produto *inicio);
+produto *excluirProdutoMeio(produto *inicio, int id);
 void listarProduto(produto *listaProduto);
 
 pedido* cadastrarPedidoInicio (pedido *inicio);
 pedido* cadastrarPedidoFim (pedido *inicio);
 pedido* cadastrarPedidoMeio (pedido *inicio, int posicao);
+pedido *excluirPedidoInicio(pedido *inicio);
+pedido *excluirPedidoFim(pedido *inicio);
+pedido *excluirPedidoMeio(pedido *inicio, int id);
 void listarPedido(pedido *listaPedido);
 
 

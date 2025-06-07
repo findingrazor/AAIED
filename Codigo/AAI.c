@@ -5,7 +5,7 @@
 #include "biblioteca.h"
 
 int main()
-{   
+{
     produto *listaProduto = carregarProdutos("produto.txt");
     cliente *listaCliente = carregarClientes("cliente.txt");
     pedido *listaPedido = carregarPedidos("pedido.txt");
@@ -27,6 +27,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
     char opcao;
     int alt;
     int posicao;
+    int id;
 
     do
     {
@@ -94,24 +95,54 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
                     *listaCliente = cadastrarClienteInicio(*listaCliente);
                 }
                 else if (alt == 2)
-                {   
+                {
                     printf("\nEm que posicao da lista deseja colocar o novo Cliente? ");
                     scanf("%d", &posicao);
                     *listaCliente = cadastrarClienteMeio(*listaCliente, posicao);
                 }
-                else 
+                else
                 {
                     *listaCliente = cadastrarClienteFim(*listaCliente);
                 }
-                
             }
             else if (alt == 2)
             {
             }
-            else if (alt==3)
+            else if (alt == 3)
             {
+                printf("\nVoce quer excluir um Cliente pelo inicio, meio ou fim da lista?");
+                printf("\n1) Inicio");
+                printf("\n2) Meio");
+                printf("\n3) Fim");
+
+                do
+                {
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
+
+                    if (alt < 1 || alt > 3)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 3 para escolher uma acao do modulo!");
+                    }
+                } while (alt < 1 || alt > 3);
+
+                if (alt == 1)
+                {
+                    *listaCliente = excluirClienteInicio(*listaCliente);
+                }
+                else if (alt == 2)
+                {
+                    printf("\nQual Cliente da lista deseja excluir? (Digite seu ID): ");
+                    scanf("%d", &id);
+                    *listaCliente = excluirClienteMeio(*listaCliente, id);
+                }
+                else
+                {
+                    *listaCliente = excluirClienteFim(*listaCliente);
+                }
             }
-            else{
+            else
+            {
                 listarClientes(*listaCliente);
             }
             break;
@@ -123,15 +154,18 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
             printf("\n3) Excluir Produto");
             printf("\n4) Listar Produto");
 
-            do {
+            do
+            {
                 printf("\nDigite a opcao desejada: ");
                 scanf("%d", &alt);
-                if (alt > 4 || alt < 1) {
+                if (alt > 4 || alt < 1)
+                {
                     printf("\nOpcao invalida, por favor, digite um numero de 1 a 4 para escolher um modulo!");
                 }
             } while (alt > 4 || alt < 1);
 
-            if (alt == 1) {
+            if (alt == 1)
+            {
 
                 printf("\nVoce quer cadastrar um Produto pelo inicio, meio ou fim da lista?");
                 printf("\n1) Inicio");
@@ -149,20 +183,59 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
                     }
                 } while (alt < 1 || alt > 3);
 
-                if (alt == 1) {
+                if (alt == 1)
+                {
                     *listaProduto = cadastrarProdutoInicio(*listaProduto);
-                } else if  (alt == 2){
+                }
+                else if (alt == 2)
+                {
                     printf("\nEm que posicao da lista deseja colocar o novo Produto? ");
                     scanf("%d", &posicao);
                     *listaProduto = cadastrarProdutoMeio(*listaProduto, posicao);
-                } else {
+                }
+                else
+                {
                     *listaProduto = cadastrarProdutoFim(*listaProduto);
                 }
+            }
+            else if (alt == 2)
+            {
+            }
+            else if (alt == 3)
+            {
+                printf("\nVoce quer excluir um Produto pelo inicio, meio ou fim da lista?");
+                printf("\n1) Inicio");
+                printf("\n2) Meio");
+                printf("\n3) Fim");
 
-            } else if (alt == 2) {
+                do
+                {
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
 
-            } else if (alt == 3) {
-            } else {
+                    if (alt < 1 || alt > 3)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 3 para escolher uma acao do modulo!");
+                    }
+                } while (alt < 1 || alt > 3);
+
+                if (alt == 1)
+                {
+                    *listaProduto = excluirProdutoInicio(*listaProduto);
+                }
+                else if (alt == 2)
+                {
+                    printf("\nQual Produto da lista deseja excluir? (Digite seu ID): ");
+                    scanf("%d", &id);
+                    //*listaCliente = cadastrarClienteMeio(*listaCliente, posicao);
+                }
+                else
+                {
+                    *listaProduto = excluirProdutoFim(*listaProduto);
+                }
+            }
+            else
+            {
                 listarProduto(*listaProduto);
             }
             break;
@@ -173,15 +246,18 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
             printf("\n2) Alterar Venda");
             printf("\n3) Excluir Venda");
             printf("\n4) Listar Vendas");
-            do {
+            do
+            {
                 printf("\nDigite a opcao desejada: ");
                 scanf("%d", &alt);
-                if (alt > 4 || alt < 1) {
+                if (alt > 4 || alt < 1)
+                {
                     printf("\nOpcao invalida, por favor, digite um numero de 1 a 4 para escolher um modulo!");
                 }
             } while (alt > 4 || alt < 1);
 
-            if (alt == 1) {
+            if (alt == 1)
+            {
 
                 printf("\nVoce quer cadastrar uma Venda pelo inicio, meio ou fim da lista?");
                 printf("\n1) Inicio");
@@ -199,20 +275,59 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
                     }
                 } while (alt < 1 || alt > 3);
 
-                if (alt == 1) {
+                if (alt == 1)
+                {
                     *listaPedido = cadastrarPedidoInicio(*listaPedido);
-                } else if  (alt == 2){
+                }
+                else if (alt == 2)
+                {
                     printf("\nEm que posicao da lista deseja colocar a nova Venda? ");
                     scanf("%d", &posicao);
                     *listaPedido = cadastrarPedidoMeio(*listaPedido, posicao);
-                } else {
+                }
+                else
+                {
                     *listaPedido = cadastrarPedidoFim(*listaPedido);
                 }
+            }
+            else if (alt == 2)
+            {
+            }
+            else if (alt == 3)
+            {
+                printf("\nVoce quer excluir um Pedido pelo inicio, meio ou fim da lista?");
+                printf("\n1) Inicio");
+                printf("\n2) Meio");
+                printf("\n3) Fim");
 
-            } else if (alt == 2) {
+                do
+                {
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
 
-            } else if (alt == 3) {
-            } else {
+                    if (alt < 1 || alt > 3)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 3 para escolher uma acao do modulo!");
+                    }
+                } while (alt < 1 || alt > 3);
+
+                if (alt == 1)
+                {
+                    *listaPedido = excluirPedidoInicio(*listaPedido);
+                }
+                else if (alt == 2)
+                {
+                    printf("\nQual Pedido da lista deseja excluir? (Digite seu ID):");
+                    scanf("%d", &id);
+                    //*listaCliente = cadastrarClienteMeio(*listaCliente, posicao);
+                }
+                else
+                {
+                    *listaPedido = excluirPedidoFim(*listaPedido);
+                }
+            }
+            else
+            {
                 listarPedido(*listaPedido);
             }
             break;
@@ -233,7 +348,8 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
 cliente *cadastrarClienteInicio(cliente *inicio)
 {
     cliente *novo = (cliente *)malloc(sizeof(cliente));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -242,11 +358,12 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     novo->proximo = inicio;
     novo->anterior = NULL;
 
-    if (inicio != NULL) {
+    if (inicio != NULL)
+    {
         inicio->anterior = novo;
     }
 
-    printf("\nVoce esta cadastrando um Cliente pelo inicio!");
+    printf("\nVoce esta cadastrando um novo Cliente pelo inicio!");
     printf("\nDigite o nome do Cliente: ");
     scanf(" %[^\n]", novo->nome);
     printf("\nDigite o telefone do Cliente: ");
@@ -282,9 +399,11 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     return novo;
 }
 
-cliente *cadastrarClienteFim(cliente *inicio) {
+cliente *cadastrarClienteFim(cliente *inicio)
+{
     cliente *novo = (cliente *)malloc(sizeof(cliente));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -312,12 +431,14 @@ cliente *cadastrarClienteFim(cliente *inicio) {
     printf("\nDigite o CEP: ");
     scanf(" %s", novo->end.cep);
 
-    if (inicio == NULL) {
+    if (inicio == NULL)
+    {
         return novo;
     }
 
     cliente *atual = inicio;
-    while (atual->proximo != NULL) {
+    while (atual->proximo != NULL)
+    {
         atual = atual->proximo;
     }
     atual->proximo = novo;
@@ -326,9 +447,11 @@ cliente *cadastrarClienteFim(cliente *inicio) {
     return inicio;
 }
 
-cliente *cadastrarClienteMeio(cliente *inicio, int posicao) {
+cliente *cadastrarClienteMeio(cliente *inicio, int posicao)
+{
     cliente *novo = (cliente *)malloc(sizeof(cliente));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -359,7 +482,8 @@ cliente *cadastrarClienteMeio(cliente *inicio, int posicao) {
     cliente *atual = inicio;
     int contador = 1;
 
-    while (contador < posicao-1 && atual->proximo != NULL) {
+    while (contador < posicao - 1 && atual->proximo != NULL)
+    {
         atual = atual->proximo;
         contador++;
     }
@@ -367,11 +491,80 @@ cliente *cadastrarClienteMeio(cliente *inicio, int posicao) {
     novo->proximo = atual->proximo;
     novo->anterior = atual;
 
-    if (atual->proximo != NULL) {
+    if (atual->proximo != NULL)
+    {
         atual->proximo->anterior = novo;
     }
     atual->proximo = novo;
     printf("\nProduto cadastrado com sucesso!");
+    return inicio;
+}
+
+cliente *excluirClienteInicio(cliente *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    cliente *atual = inicio;
+    inicio = inicio->proximo;
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+cliente *excluirClienteFim(cliente *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    cliente *atual = inicio;
+    while(atual->proximo != NULL){
+        atual = atual->proximo;
+    }
+    atual->anterior->proximo = NULL;
+    atual->anterior = NULL;
+    atual->proximo = NULL;
+
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+cliente *excluirClienteMeio(cliente *inicio, int id)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    cliente *atual = inicio;
+    int contador = 1;
+
+    while (contador < id && atual->proximo != NULL)
+    {
+        atual = atual->proximo;
+        contador++;
+    }
+
+    atual->anterior->proximo = atual->proximo;
+    atual->proximo->anterior = atual->anterior;
+
+    if (atual->proximo == NULL)
+    {
+        atual->anterior->proximo = NULL;
+    }
+
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+    printf("\nCliente excluido com sucesso!");
     return inicio;
 }
 
@@ -402,9 +595,11 @@ void listarClientes(cliente *listaClientes)
     printf("\nListagem feita com sucesso!");
 }
 
-produto *cadastrarProdutoInicio (produto *inicio) {
+produto *cadastrarProdutoInicio(produto *inicio)
+{
     produto *novo = (produto *)malloc(sizeof(produto));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -429,9 +624,11 @@ produto *cadastrarProdutoInicio (produto *inicio) {
     return novo;
 }
 
-produto *cadastrarProdutoFim(produto *inicio) {
+produto *cadastrarProdutoFim(produto *inicio)
+{
     produto *novo = (produto *)malloc(sizeof(produto));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -452,12 +649,14 @@ produto *cadastrarProdutoFim(produto *inicio) {
     printf("Digite a quantidade do Produto no estoque: ");
     scanf(" %d", &novo->qtdeEstoque);
 
-    if (inicio == NULL) {
+    if (inicio == NULL)
+    {
         return novo;
     }
 
     produto *atual = inicio;
-    while (atual->proximo != NULL) {
+    while (atual->proximo != NULL)
+    {
         atual = atual->proximo;
     }
     atual->proximo = novo;
@@ -466,9 +665,11 @@ produto *cadastrarProdutoFim(produto *inicio) {
     return inicio;
 }
 
-produto *cadastrarProdutoMeio(produto *inicio, int posicao) {
+produto *cadastrarProdutoMeio(produto *inicio, int posicao)
+{
     produto *novo = (produto *)malloc(sizeof(produto));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -492,7 +693,8 @@ produto *cadastrarProdutoMeio(produto *inicio, int posicao) {
     produto *atual = inicio;
     int contador = 1;
 
-    while (contador < posicao-1 && atual->proximo != NULL) {
+    while (contador < posicao - 1 && atual->proximo != NULL)
+    {
         atual = atual->proximo;
         contador++;
     }
@@ -500,7 +702,8 @@ produto *cadastrarProdutoMeio(produto *inicio, int posicao) {
     novo->proximo = atual->proximo;
     novo->anterior = atual;
 
-    if (atual->proximo != NULL) {
+    if (atual->proximo != NULL)
+    {
         atual->proximo->anterior = novo;
     }
     atual->proximo = novo;
@@ -508,15 +711,85 @@ produto *cadastrarProdutoMeio(produto *inicio, int posicao) {
     return inicio;
 }
 
+produto *excluirProdutoInicio(produto *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
 
-void listarProduto(produto *listaProduto) {
-    if (listaProduto == NULL) {
+    produto *atual = inicio;
+    inicio = inicio->proximo;
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+
+    printf("\nProduto excluido com sucesso!");
+    return inicio;
+}
+
+produto *excluirProdutoFim(produto *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    produto *atual = inicio;
+    while(atual->proximo != NULL){
+        atual = atual->proximo;
+    }
+    atual->anterior->proximo = NULL;
+    atual->anterior = NULL;
+    atual->proximo = NULL;
+
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+produto *excluirProdutoMeio(produto *inicio, int id)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    produto *atual = inicio;
+    int contador = 1;
+
+    while (contador < id && atual->proximo != NULL)
+    {
+        atual = atual->proximo;
+        contador++;
+    }
+
+    atual->anterior->proximo = atual->proximo;
+    atual->proximo->anterior = atual->anterior;
+
+    if (atual->proximo == NULL)
+    {
+        atual->anterior->proximo = NULL;
+    }
+
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+void listarProduto(produto *listaProduto)
+{
+    if (listaProduto == NULL)
+    {
         printf("\nLista vazia");
         return;
     }
 
     produto *atual = listaProduto;
-    while (atual != NULL) {
+    while (atual != NULL)
+    {
         printf("\n--------------------------");
         printf("\nId: %d", atual->idProduto);
         printf("\nNome: %s", atual->nome);
@@ -529,9 +802,11 @@ void listarProduto(produto *listaProduto) {
     printf("\nListagem feita com sucesso!");
 }
 
-pedido *cadastrarPedidoInicio (pedido *inicio) {
+pedido *cadastrarPedidoInicio(pedido *inicio)
+{
     pedido *novo = (pedido *)malloc(sizeof(pedido));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -551,15 +826,17 @@ pedido *cadastrarPedidoInicio (pedido *inicio) {
     scanf(" %f", &novo->vlrUni);
     printf("Digite o desconto (0.0 se não houver): ");
     scanf(" %f", &novo->desconto);
-    printf("Valor Total: %f", novo->qtde*novo->vlrUni*(1-(novo->desconto/100)));
+    printf("Valor Total: %f", novo->qtde * novo->vlrUni * (1 - (novo->desconto / 100)));
     printf("\nPedido cadastrado com sucesso!");
 
     return novo;
 }
 
-pedido *cadastrarPedidoFim(pedido *inicio) {
+pedido *cadastrarPedidoFim(pedido *inicio)
+{
     pedido *novo = (pedido *)malloc(sizeof(pedido));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -579,15 +856,17 @@ pedido *cadastrarPedidoFim(pedido *inicio) {
     scanf(" %f", &novo->vlrUni);
     printf("Digite o desconto (0.0 se não houver): ");
     scanf(" %f", &novo->desconto);
-    printf("Valor Total: %f", novo->qtde*novo->vlrUni*(1-(novo->desconto/100)));
+    printf("Valor Total: %f", novo->qtde * novo->vlrUni * (1 - (novo->desconto / 100)));
     printf("\nPedido cadastrado com sucesso!");
 
-    if (inicio == NULL) {
+    if (inicio == NULL)
+    {
         return novo;
     }
 
     pedido *atual = inicio;
-    while (atual->proximo != NULL) {
+    while (atual->proximo != NULL)
+    {
         atual = atual->proximo;
     }
     atual->proximo = novo;
@@ -596,9 +875,11 @@ pedido *cadastrarPedidoFim(pedido *inicio) {
     return inicio;
 }
 
-pedido *cadastrarPedidoMeio(pedido *inicio, int posicao) {
+pedido *cadastrarPedidoMeio(pedido *inicio, int posicao)
+{
     pedido *novo = (pedido *)malloc(sizeof(pedido));
-    if (novo == NULL) {
+    if (novo == NULL)
+    {
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
@@ -618,12 +899,13 @@ pedido *cadastrarPedidoMeio(pedido *inicio, int posicao) {
     scanf(" %f", &novo->vlrUni);
     printf("Digite o desconto (0.0 se não houver): ");
     scanf(" %f", &novo->desconto);
-    printf("Valor Total: %f", novo->qtde*novo->vlrUni*(1-(novo->desconto/100)));
+    printf("Valor Total: %f", novo->qtde * novo->vlrUni * (1 - (novo->desconto / 100)));
 
     pedido *atual = inicio;
     int contador = 1;
 
-    while (contador < posicao-1 && atual->proximo != NULL) {
+    while (contador < posicao - 1 && atual->proximo != NULL)
+    {
         atual = atual->proximo;
         contador++;
     }
@@ -631,7 +913,8 @@ pedido *cadastrarPedidoMeio(pedido *inicio, int posicao) {
     novo->proximo = atual->proximo;
     novo->anterior = atual;
 
-    if (atual->proximo != NULL) {
+    if (atual->proximo != NULL)
+    {
         atual->proximo->anterior = novo;
     }
     atual->proximo = novo;
@@ -639,15 +922,85 @@ pedido *cadastrarPedidoMeio(pedido *inicio, int posicao) {
     return inicio;
 }
 
+pedido *excluirPedidoInicio(pedido *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
 
-void listarPedido(pedido *listaPedido) {
-    if (listaPedido == NULL) {
+    pedido *atual = inicio;
+    inicio = inicio->proximo;
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+
+    printf("\nPedido excluido com sucesso!");
+    return inicio;
+}
+
+pedido *excluirPedidoFim(pedido *inicio)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    pedido *atual = inicio;
+    while(atual->proximo != NULL){
+        atual = atual->proximo;
+    }
+    atual->anterior->proximo = NULL;
+    atual->anterior = NULL;
+    atual->proximo = NULL;
+
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+pedido *excluirPedidoMeio(pedido *inicio, int id)
+{
+    if (inicio == NULL)
+    {
+        printf("\nLista Vazia");
+        return inicio;
+    }
+
+    pedido *atual = inicio;
+    int contador = 1;
+
+    while (contador < id && atual->proximo != NULL)
+    {
+        atual = atual->proximo;
+        contador++;
+    }
+
+    atual->anterior->proximo = atual->proximo;
+    atual->proximo->anterior = atual->anterior;
+
+    if (atual->proximo == NULL)
+    {
+        atual->anterior->proximo = NULL;
+    }
+
+    atual->proximo = NULL;
+    atual->anterior = NULL;
+    printf("\nCliente excluido com sucesso!");
+    return inicio;
+}
+
+void listarPedido(pedido *listaPedido)
+{
+    if (listaPedido == NULL)
+    {
         printf("\nLista vazia");
         return;
     }
 
     pedido *atual = listaPedido;
-    while (atual != NULL) {
+    while (atual != NULL)
+    {
         printf("\n--------------------------");
         printf("\nId: %d", atual->idPedido);
         printf("\nNome Cliente: %s", atual->nomeCliente);
@@ -661,9 +1014,11 @@ void listarPedido(pedido *listaPedido) {
     printf("\nListagem feita com sucesso!");
 }
 
-cliente* carregarClientes(char* nomeArquivo) {
-    FILE* f = fopen(nomeArquivo, "r");
-    if (!f) {
+cliente *carregarClientes(char *nomeArquivo)
+{
+    FILE *f = fopen(nomeArquivo, "r");
+    if (!f)
+    {
         printf("Arquivo %s nao encontrado. Iniciando com lista vazia.\n", nomeArquivo);
         return NULL;
     }
@@ -671,48 +1026,57 @@ cliente* carregarClientes(char* nomeArquivo) {
     cliente *inicio = NULL, *fim = NULL, *novo;
     char linha[300];
 
-    while (fgets(linha, sizeof(linha), f)) {
+    while (fgets(linha, sizeof(linha), f))
+    {
         linha[strcspn(linha, "\n")] = 0;
-        novo = (cliente*)malloc(sizeof(cliente));
+        novo = (cliente *)malloc(sizeof(cliente));
         sscanf(linha, "%d;%49[^;];%11[^;];%11[^;];%49[^;];%19[^;];%d;%19[^;];%8s",
-            &novo->idCliente, novo->nome, novo->telefone, novo->cpf, novo->email,
-            novo->end.rua, &novo->end.numero, novo->end.bairro, novo->end.cep);
+               &novo->idCliente, novo->nome, novo->telefone, novo->cpf, novo->email,
+               novo->end.rua, &novo->end.numero, novo->end.bairro, novo->end.cep);
 
         novo->proximo = NULL;
         novo->anterior = fim;
 
-        if (fim != NULL) {
+        if (fim != NULL)
+        {
             fim->proximo = novo;
-        } else {
-            inicio = novo;  
+        }
+        else
+        {
+            inicio = novo;
         }
 
-        fim = novo; 
+        fim = novo;
     }
 
     fclose(f);
     return inicio;
 }
 
-void salvarClientes(char* nomeArquivo, cliente* lista) {
-    FILE* f = fopen(nomeArquivo, "w");
-    if (!f) return;
+void salvarClientes(char *nomeArquivo, cliente *lista)
+{
+    FILE *f = fopen(nomeArquivo, "w");
+    if (!f)
+        return;
 
     cliente *atual = lista;
-    while (atual != NULL) {
+    while (atual != NULL)
+    {
         fprintf(f, "%d;%s;%s;%s;%s;%s;%d;%s;%s\n",
-            atual->idCliente, atual->nome, atual->telefone, atual->cpf,
-            atual->email, atual->end.rua, atual->end.numero,
-            atual->end.bairro, atual->end.cep);
+                atual->idCliente, atual->nome, atual->telefone, atual->cpf,
+                atual->email, atual->end.rua, atual->end.numero,
+                atual->end.bairro, atual->end.cep);
         atual = atual->proximo;
     }
 
     fclose(f);
 }
 
-produto* carregarProdutos(char* nomeArquivo) {
-    FILE* f = fopen(nomeArquivo, "r");
-      if (!f) {
+produto *carregarProdutos(char *nomeArquivo)
+{
+    FILE *f = fopen(nomeArquivo, "r");
+    if (!f)
+    {
         printf("Arquivo %s nao encontrado. Iniciando com lista vazia.\n", nomeArquivo);
         return NULL;
     }
@@ -720,47 +1084,56 @@ produto* carregarProdutos(char* nomeArquivo) {
     produto *inicio = NULL, *fim = NULL, *novo;
     char linha[300];
 
-    while (fgets(linha, sizeof(linha), f)) {
+    while (fgets(linha, sizeof(linha), f))
+    {
         linha[strcspn(linha, "\n")] = 0;
-        novo = (produto*)malloc(sizeof(produto));
+        novo = (produto *)malloc(sizeof(produto));
         sscanf(linha, "%d;%49[^;];%9[^;];%9[^;];%f;%d",
-            &novo->idProduto, novo->nome, novo->midia, novo->genero, &novo->preco,
-            &novo->qtdeEstoque);
+               &novo->idProduto, novo->nome, novo->midia, novo->genero, &novo->preco,
+               &novo->qtdeEstoque);
 
         novo->proximo = NULL;
         novo->anterior = fim;
 
-        if (fim != NULL) {
+        if (fim != NULL)
+        {
             fim->proximo = novo;
-        } else {
-            inicio = novo;  
+        }
+        else
+        {
+            inicio = novo;
         }
 
-        fim = novo; 
+        fim = novo;
     }
 
     fclose(f);
     return inicio;
 }
 
-void salvarProdutos(char* nomeArquivo, produto* lista) {
-    FILE* f = fopen(nomeArquivo, "w");
-    if (!f) return;
+void salvarProdutos(char *nomeArquivo, produto *lista)
+{
+    FILE *f = fopen(nomeArquivo, "w");
+    if (!f)
+        return;
 
     produto *atual = lista;
-    while (atual != NULL) {
+    while (atual != NULL)
+    {
         fprintf(f, "%d;%s;%s;%s;%f;%d\n",
-            atual->idProduto, atual->nome, atual->midia, atual->genero,
-            atual->preco, atual->qtdeEstoque);
+                atual->idProduto, atual->nome, atual->midia, atual->genero,
+                atual->preco, atual->qtdeEstoque);
         atual = atual->proximo;
     }
 
     fclose(f);
 }
 
-pedido* carregarPedidos(char* nomeArquivo) {
-    FILE* f = fopen(nomeArquivo, "r");
-    if (!f) {
+pedido *carregarPedidos(char *nomeArquivo)
+{
+    FILE *f = fopen(nomeArquivo, "r");
+    if (!f)
+    {
         printf("Arquivo %s nao encontrado. Iniciando com lista vazia.\n", nomeArquivo);
         return NULL;
     }
@@ -768,66 +1141,79 @@ pedido* carregarPedidos(char* nomeArquivo) {
     pedido *inicio = NULL, *fim = NULL, *novo;
     char linha[300];
 
-    while (fgets(linha, sizeof(linha), f)) {
+    while (fgets(linha, sizeof(linha), f))
+    {
         linha[strcspn(linha, "\n")] = 0;
-        novo = (pedido*)malloc(sizeof(pedido));
+        novo = (pedido *)malloc(sizeof(pedido));
         sscanf(linha, "%d;%49[^;];%49[^;];%d;%f;%f;%f",
-            &novo->idPedido, novo->nomeCliente, novo->nomeProduto, &novo->qtde, &novo->vlrUni,
-            &novo->desconto, &novo->vlrTotal);
+               &novo->idPedido, novo->nomeCliente, novo->nomeProduto, &novo->qtde, &novo->vlrUni,
+               &novo->desconto, &novo->vlrTotal);
 
         novo->proximo = NULL;
         novo->anterior = fim;
 
-        if (fim != NULL) {
+        if (fim != NULL)
+        {
             fim->proximo = novo;
-        } else {
-            inicio = novo;  
+        }
+        else
+        {
+            inicio = novo;
         }
 
-        fim = novo; 
+        fim = novo;
     }
 
     fclose(f);
     return inicio;
 }
 
-void salvarPedidos(char* nomeArquivo, pedido* lista) {
-    FILE* f = fopen(nomeArquivo, "w");
-    if (!f) return;
+void salvarPedidos(char *nomeArquivo, pedido *lista)
+{
+    FILE *f = fopen(nomeArquivo, "w");
+    if (!f)
+        return;
 
     pedido *atual = lista;
-    while (atual != NULL) {
+    while (atual != NULL)
+    {
         fprintf(f, "%d;%s;%s;%d;%f;%f;%f\n",
-            atual->idPedido, atual->nomeCliente, atual->nomeProduto, atual->qtde, atual->vlrUni,
-            atual->desconto, atual->vlrTotal);
+                atual->idPedido, atual->nomeCliente, atual->nomeProduto, atual->qtde, atual->vlrUni,
+                atual->desconto, atual->vlrTotal);
         atual = atual->proximo;
     }
 
     fclose(f);
 }
 
-void liberarClientes(cliente* lista) {
-    cliente* atual = lista;
-    while (atual != NULL) {
-        cliente* temp = atual;
+void liberarClientes(cliente *lista)
+{
+    cliente *atual = lista;
+    while (atual != NULL)
+    {
+        cliente *temp = atual;
         atual = atual->proximo;
         free(temp);
     }
 }
 
-void liberarProdutos(produto* lista) {
-    produto* atual = lista;
-    while (atual != NULL) {
-        produto* temp = atual;
+void liberarProdutos(produto *lista)
+{
+    produto *atual = lista;
+    while (atual != NULL)
+    {
+        produto *temp = atual;
         atual = atual->proximo;
         free(temp);
     }
 }
 
-void liberarPedidos(pedido* lista) {
-    pedido* atual = lista;
-    while (atual != NULL) {
-        pedido* temp = atual;
+void liberarPedidos(pedido *lista)
+{
+    pedido *atual = lista;
+    while (atual != NULL)
+    {
+        pedido *temp = atual;
         atual = atual->proximo;
         free(temp);
     }
