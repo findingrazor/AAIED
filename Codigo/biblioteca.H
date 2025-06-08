@@ -100,3 +100,10 @@ void salvarPedidos(char* nomeArquivo, pedido* lista);
 void liberarClientes(cliente* lista);
 void liberarProdutos(produto* lista);
 void liberarPedidos(pedido* lista);
+
+int validarNome(char *nome);
+int validarTelefone(char *telefone);
+int validarCPF(char *cpf);
+int validarEmail(char *email);
+int validarCEP(char *cep);
+
