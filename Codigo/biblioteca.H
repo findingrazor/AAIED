@@ -61,6 +61,8 @@ cliente* cadastrarClienteMeio(cliente *inicio, int posicao);
 cliente *excluirClienteInicio(cliente *inicio);
 cliente *excluirClienteFim(cliente *inicio);
 cliente *excluirClienteMeio(cliente *inicio, int id);
+void buscarClienteNomeCPF(cliente *listaClientes, char *nomeCPF);
+void buscarClienteID(cliente *listaClientes, int id);
 void listarClientes(cliente *lista);
 
 produto* cadastrarProdutoInicio(produto* inicio);
@@ -69,6 +71,8 @@ produto* cadastrarProdutoMeio(produto *inicio, int posicao);
 produto *excluirProdutoInicio(produto *inicio);
 produto *excluirProdutoFim(produto *inicio);
 produto *excluirProdutoMeio(produto *inicio, int id);
+void buscarProdutoNome(produto *listaProduto, char *nome);
+void buscarProdutoID(produto *listaProduto, int id);
 void listarProduto(produto *listaProduto);
 
 pedido* cadastrarPedidoInicio (pedido *inicio);
@@ -77,6 +81,8 @@ pedido* cadastrarPedidoMeio (pedido *inicio, int posicao);
 pedido *excluirPedidoInicio(pedido *inicio);
 pedido *excluirPedidoFim(pedido *inicio);
 pedido *excluirPedidoMeio(pedido *inicio, int id);
+void buscarPedidoNome(pedido *listaPedido, char *nome);
+void buscarPedidoID(pedido *listaPedido, int id);
 void listarPedido(pedido *listaPedido);
 
 

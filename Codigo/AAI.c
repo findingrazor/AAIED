@@ -28,6 +28,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
     int alt;
     int posicao;
     int id;
+    char nomeCPF[50];
 
     do
     {
@@ -227,7 +228,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
                 {
                     printf("\nQual Produto da lista deseja excluir? (Digite seu ID): ");
                     scanf("%d", &id);
-                    //*listaCliente = cadastrarClienteMeio(*listaCliente, posicao);
+                    *listaProduto = excluirProdutoMeio(*listaProduto, id);
                 }
                 else
                 {
@@ -319,7 +320,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
                 {
                     printf("\nQual Pedido da lista deseja excluir? (Digite seu ID):");
                     scanf("%d", &id);
-                    //*listaCliente = cadastrarClienteMeio(*listaCliente, posicao);
+                    *listaPedido = excluirPedidoMeio(*listaPedido, id);
                 }
                 else
                 {
@@ -333,6 +334,103 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
             break;
 
         case 'D':
+            printf("\nVoce esta na Busca, o que deseja buscar?");
+            printf("\n1) Cliente");
+            printf("\n2) Produto");
+            printf("\n3) Vendas");
+            do{
+                printf("\nDigite a opcao desejada: ");
+                scanf(" %d", &alt);
+
+                if (alt < 1 || alt > 3)
+                {
+                    printf("\nOpcao invalida, por favor, digite um numero de 1 a 3 para escolher uma acao do modulo!");
+                }
+            }while (alt < 1 || alt > 3);
+
+            if (alt == 1){
+                printf("\nVoce deseja buscar o Cliente pelo Nome/CPF ou ID? ");
+                printf("\n1) Nome/CPF");
+                printf("\n2) ID");
+                do{
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
+
+                    if (alt < 1 || alt > 2)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 2 para escolher uma acao do modulo!");
+                    }
+                }while (alt < 1 || alt > 2);
+
+                if (alt==1)
+                {
+                    printf("\nDigite o Nome ou CPF do Cliente: ");
+                    scanf(" %[^\n]", nomeCPF);
+                    buscarClienteNomeCPF(*listaCliente, nomeCPF);
+                }
+                else 
+                {
+                    printf("\nDigite o ID do Cliente: ");
+                    scanf(" %d", &id);
+                    buscarClienteID(*listaCliente, id);
+                }
+            }
+            else if (alt == 2)
+            {
+                printf("\nVoce deseja buscar o Produto pelo nome ou ID? ");
+                printf("\n1) Nome");
+                printf("\n2) ID");
+                do{
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
+
+                    if (alt < 1 || alt > 2)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 2 para escolher uma acao do modulo!");
+                    }
+                }while (alt < 1 || alt > 2);
+
+                if (alt==1)
+                {
+                    printf("\nDigite o Nome do Produto: ");
+                    scanf(" %[^\n]", nomeCPF);
+                    buscarProdutoNome(*listaProduto, nomeCPF);
+                }
+                else 
+                {
+                    printf("\nDigite o ID do Produto: ");
+                    scanf(" %d", &id);
+                    buscarProdutoID(*listaProduto, id);
+                }
+            }
+            else 
+            {
+                printf("\nVoce deseja buscar o Pedido pelo nome do Cliente/nome do Produto ou ID? ");
+                printf("\n1) Nome do Cliente ou do Produto");
+                printf("\n2) ID");
+                do{
+                    printf("\nDigite a opcao desejada: ");
+                    scanf(" %d", &alt);
+
+                    if (alt < 1 || alt > 2)
+                    {
+                        printf("\nOpcao invalida, por favor, digite um numero de 1 a 2 para escolher uma acao do modulo!");
+                    }
+                }while (alt < 1 || alt > 2);
+
+                if (alt==1)
+                {
+                    printf("\nDigite o Nome do Cliente ou do Produto: ");
+                    scanf(" %[^\n]", nomeCPF);
+                    buscarPedidoNome(*listaPedido, nomeCPF);
+                }
+                else 
+                {
+                    printf("\nDigite o ID do Pedido: ");
+                    scanf(" %d", &id);
+                    buscarPedidoID(*listaPedido, id);
+                }
+            }
             break;
 
         case 'E':
@@ -382,19 +480,6 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     printf("\nDigite o CEP: ");
     scanf(" %s", novo->end.cep);
     printf("\nCliente cadastrado com sucesso!");
-
-    /*printf("\n--------------------------");
-    printf("\nDados Pessoais");
-    printf("\nId: %d", novo->idCliente);
-    printf("\nNome: %s", novo->nome);
-    printf("\nTelefone: %s", novo->telefone);
-    printf("\nCPF: %s", novo->cpf);
-    printf("\nEmail: %s", novo->email);
-    printf("\nEndereco");
-    printf("\nRua: %s", novo->end.rua);
-    printf("\nNumero: %d", novo->end.numero);
-    printf("\nBairro: %s", novo->end.bairro);
-    printf("\nCEP: %s", novo->end.cep);*/
 
     return novo;
 }
@@ -566,6 +651,76 @@ cliente *excluirClienteMeio(cliente *inicio, int id)
     atual->anterior = NULL;
     printf("\nCliente excluido com sucesso!");
     return inicio;
+}
+
+void buscarClienteNomeCPF(cliente *listaClientes, char *nomeCPF)
+{
+    if (listaClientes == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    cliente *atual = listaClientes;
+    while (atual != NULL)
+    {
+        if(stricmp(atual->nome, nomeCPF) == 0 || stricmp(atual->cpf, nomeCPF) == 0)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idCliente);
+            printf("\nNome: %s", atual->nome);
+            printf("\nTelefone: %s", atual->telefone);
+            printf("\nCPF: %s", atual->cpf);
+            printf("\nEmail: %s", atual->email);
+            printf("\nEndereco");
+            printf("\nRua: %s", atual->end.rua);
+            printf("\nNumero: %d", atual->end.numero);
+            printf("\nBairro: %s", atual->end.bairro);
+            printf("\nCEP: %s", atual->end.cep);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
+
+    printf("\nBusca feita com sucesso");
+}
+
+void buscarClienteID(cliente *listaClientes, int id)
+{
+    if (listaClientes == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    cliente *atual = listaClientes;
+    while (atual != NULL)
+    {
+        if(atual->idCliente == id)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idCliente);
+            printf("\nNome: %s", atual->nome);
+            printf("\nTelefone: %s", atual->telefone);
+            printf("\nCPF: %s", atual->cpf);
+            printf("\nEmail: %s", atual->email);
+            printf("\nEndereco");
+            printf("\nRua: %s", atual->end.rua);
+            printf("\nNumero: %d", atual->end.numero);
+            printf("\nBairro: %s", atual->end.bairro);
+            printf("\nCEP: %s", atual->end.cep);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
 }
 
 void listarClientes(cliente *listaClientes)
@@ -779,6 +934,70 @@ produto *excluirProdutoMeio(produto *inicio, int id)
     return inicio;
 }
 
+void buscarProdutoNome(produto *listaProduto, char *nome)
+{
+    if (listaProduto == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    produto *atual = listaProduto;
+    while (atual != NULL)
+    {
+        if(stricmp(atual->nome, nome) == 0)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idProduto);
+            printf("\nNome: %s", atual->nome);
+            printf("\nMidia: %s", atual->midia);
+            printf("\nGenero: %s", atual->genero);
+            printf("\nPreco: %.2f", atual->preco);
+            printf("\nQuantidade em Estoque: %d", atual->qtdeEstoque);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
+
+    printf("\nBusca feita com sucesso");
+}
+
+void buscarProdutoID(produto *listaProduto, int id)
+{
+    if (listaProduto == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    produto *atual = listaProduto;
+    while (atual != NULL)
+    {
+        if(atual->idProduto == id)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idProduto);
+            printf("\nNome: %s", atual->nome);
+            printf("\nMidia: %s", atual->midia);
+            printf("\nGenero: %s", atual->genero);
+            printf("\nPreco: %.2f", atual->preco);
+            printf("\nQuantidade em Estoque: %d", atual->qtdeEstoque);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
+
+    printf("\nBusca feita com sucesso");
+}
+
 void listarProduto(produto *listaProduto)
 {
     if (listaProduto == NULL)
@@ -988,6 +1207,70 @@ pedido *excluirPedidoMeio(pedido *inicio, int id)
     atual->anterior = NULL;
     printf("\nCliente excluido com sucesso!");
     return inicio;
+}
+
+void buscarPedidoNome(pedido *listaPedido, char *nome)
+{
+    if (listaPedido == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    pedido *atual = listaPedido;
+    while (atual != NULL)
+    {
+        if(stricmp(atual->nomeCliente, nome) == 0 || stricmp(atual->nomeProduto, nome) == 0)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idPedido);
+            printf("\nNome Cliente: %s", atual->nomeCliente);
+            printf("\nNome Produto: %s", atual->nomeProduto);
+            printf("\nQuantidade: %d", atual->qtde);
+            printf("\nValor Unitario: %.2f", atual->vlrUni);
+            printf("\nDesconto: %.2f", atual->desconto);
+            printf("\nPreco: %.2f", atual->vlrTotal);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
+
+    printf("\nBusca feita com sucesso");
+}
+
+void buscarPedidoID(pedido *listaPedido, int id)
+{
+    if (listaPedido == NULL)
+    {
+        printf("\nLista Vazia");
+        return;
+    }
+
+    pedido *atual = listaPedido;
+    while (atual != NULL)
+    {
+        if(atual->idPedido == id)
+        {
+            printf("\n--------------------------");
+            printf("\nId: %d", atual->idPedido);
+            printf("\nNome Cliente: %s", atual->nomeCliente);
+            printf("\nNome Produto: %s", atual->nomeProduto);
+            printf("\nQuantidade: %d", atual->qtde);
+            printf("\nValor Unitario: %.2f", atual->vlrUni);
+            printf("\nDesconto: %.2f", atual->desconto);
+            printf("\nPreco: %.2f", atual->vlrTotal);
+
+            atual = atual->proximo;
+        }
+        else
+        {
+            atual = atual->proximo;
+        }
+    }
 }
 
 void listarPedido(pedido *listaPedido)
