@@ -1,3 +1,4 @@
-1;Mayhem - Lady Gaga;CD;Pop;100.989998;50
-2;brat - Charli XCX;CD;Pop;80.000000;30
-3;From Zero - Linkin Park;CD;Rock;75.900002;70
+1;Under My Skin - Avril Lavigne;Vinil;Rock;200.000000;5
+2;Mayhem - Lady Gaga;CD;Pop;100.000000;49
+3;brat - Charli XCX;CD;Pop;80.000000;30
+4;From Zero - Linkin Park;CD;Rock;75.000000;70

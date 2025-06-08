@@ -5,8 +5,6 @@
 
 #endif // BIBLIOTECA_H_INCLUDED
 
-#define RANDO rand() % 1000
-
 typedef struct endereco
 {
     char rua[20];
@@ -58,6 +56,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido);
 cliente* cadastrarClienteInicio(cliente* inicio);
 cliente* cadastrarClienteFim(cliente *inicio);
 cliente* cadastrarClienteMeio(cliente *inicio, int posicao);
+void alterarCliente (cliente *listaCliente);
 cliente *excluirClienteInicio(cliente *inicio);
 cliente *excluirClienteFim(cliente *inicio);
 cliente *excluirClienteMeio(cliente *inicio, int id);
@@ -68,6 +67,7 @@ void listarClientes(cliente *lista);
 produto* cadastrarProdutoInicio(produto* inicio);
 produto* cadastrarProdutoFim(produto* inicio);
 produto* cadastrarProdutoMeio(produto *inicio, int posicao);
+void alterarProduto(produto *listaProduto);
 produto *excluirProdutoInicio(produto *inicio);
 produto *excluirProdutoFim(produto *inicio);
 produto *excluirProdutoMeio(produto *inicio, int id);
@@ -75,9 +75,10 @@ void buscarProdutoNome(produto *listaProduto, char *nome);
 void buscarProdutoID(produto *listaProduto, int id);
 void listarProduto(produto *listaProduto);
 
-pedido* cadastrarPedidoInicio (pedido *inicio);
-pedido* cadastrarPedidoFim (pedido *inicio);
-pedido* cadastrarPedidoMeio (pedido *inicio, int posicao);
+pedido *cadastrarPedidoInicio (pedido *inicio, cliente *listaClientes, produto *listaProdutos);
+pedido *cadastrarPedidoFim(pedido *inicio, cliente *listaClientes, produto *listaProdutos);
+pedido *cadastrarPedidoMeio(pedido *inicio, cliente *listaClientes, produto *listaProdutos, int posicao);
+void alterarPedido (pedido *listaPedido);
 pedido *excluirPedidoInicio(pedido *inicio);
 pedido *excluirPedidoFim(pedido *inicio);
 pedido *excluirPedidoMeio(pedido *inicio, int id);
@@ -85,6 +86,7 @@ void buscarPedidoNome(pedido *listaPedido, char *nome);
 void buscarPedidoID(pedido *listaPedido, int id);
 void listarPedido(pedido *listaPedido);
 
+void relatorio (cliente *listaCliente, produto *listaProduto, pedido *listaPedido);
 
 cliente* carregarClientes(char* nomeArquivo);
 void salvarClientes(char* nomeArquivo, cliente* lista);
