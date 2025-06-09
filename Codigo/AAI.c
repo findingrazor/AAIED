@@ -937,32 +937,35 @@ produto *cadastrarProdutoInicio(produto *inicio)
         printf("\nErro ao alocar memoria!");
         return inicio;
     }
-
     novo->proximo = inicio;
     novo->anterior = NULL;
-
     printf("\nVoce esta cadastrando um novo Produto pelo inicio da lista!");
     printf("\nDigite o nome do Produto: ");
     scanf(" %[^\n]", novo->nome);
-    printf("Digite a midia do Produto: ");
-    scanf(" %s", novo->midia);
+    do {
+        printf("Digite a midia do Produto: ");
+        scanf(" %s", novo->midia);
+    } while (validarMidia(novo->midia) == 0);
     printf("Digite o genero do Produto: ");
     scanf(" %s", novo->genero);
-    printf("Digite o preco do Produto: ");
-    scanf(" %f", &novo->preco);
+    do {
+        printf("Digite o preco do Produto: ");
+        scanf(" %f", &novo->preco);
+    } while (validarPreco(&novo->preco) == 0);
     printf("Digite a quantidade do Produto no estoque: ");
     scanf(" %d", &novo->qtdeEstoque);
     printf("\nProduto cadastrado com sucesso!");
-
+ 
     produto *atual = inicio;
     int id = 1;
     while (atual != NULL) {
         atual->idProduto = id++;
         atual = atual->proximo;
     }
+
     return novo;
 }
-
+ 
 produto *cadastrarProdutoFim(produto *inicio)
 {
     produto *novo = (produto *)malloc(sizeof(produto));
@@ -2167,4 +2170,20 @@ int validarCEP(char *cep) {
         }
     }
      return 1;
+}
+
+int validarMidia(char *midia) {
+    if (strcmp(midia, "CD") != 0 && strcmp(midia, "LP") != 0 && strcmp(midia, "DVD") != 0) {
+        printf("Midia invalida! Escolha CD, DVD ou LP\n");
+        return 0;
+    }
+    return 1;
+}
+ 
+int validarPreco(float *preco) {
+    if (preco <= 0) {
+        printf("O preço não pode ser negativo ou igual a zero\n");
+        return 0;
+    }
+    return 1;
 }
