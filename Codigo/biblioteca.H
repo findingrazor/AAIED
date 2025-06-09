@@ -106,4 +106,5 @@ int validarTelefone(char *telefone);
 int validarCPF(char *cpf);
 int validarEmail(char *email);
 int validarCEP(char *cep);
-
+int validarMidia(char *midia);
+int validarPreco(float *preco);
