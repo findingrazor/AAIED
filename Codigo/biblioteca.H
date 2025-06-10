@@ -102,8 +102,7 @@ void liberarProdutos(produto* lista);
 void liberarPedidos(pedido* lista);
 
 int validarNome(char *nome);
-int validarTelefone(char *telefone);
-int validarCPF(char *cpf);
+int validarTelefoneCPF(char *telefone);
 int validarEmail(char *email);
 int validarCEP(char *cep);
 int validarMidia(char *midia);

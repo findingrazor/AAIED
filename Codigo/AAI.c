@@ -40,7 +40,7 @@ void menu(cliente **listaCliente, produto **listaProduto, pedido **listaPedido)
         printf("\nC) Gerenciamento de Vendas");
         printf("\nD) Buscar");
         printf("\nE) Relatorios");
-        printf("\nF) Sair");
+        printf("\nF) Salvar e Sair");
 
         do
         {
@@ -473,12 +473,12 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     do {
         printf("\nDigite o telefone do Cliente: ");
         scanf(" %s", novo->telefone);
-    } while (validarTelefone(novo->telefone) == 0);
+    } while (validarTelefoneCPF(novo->telefone) == 0);
 
     do {
         printf("\nDigite o CPF do Cliente: ");
         scanf(" %s", novo->cpf);
-    } while (validarCPF(novo->cpf) == 0);
+    } while (validarTelefoneCPF(novo->cpf) == 0);
 
     do {
         printf("\nDigite o email do Cliente: ");
@@ -486,12 +486,24 @@ cliente *cadastrarClienteInicio(cliente *inicio)
     } while (validarEmail(novo->email) == 0);
 
     printf("\nVamos preencher o endereço!");
-    printf("\nDigite a rua: ");
-    scanf(" %[^\n]", novo->end.rua);
+    do {
+        printf("\nDigite a rua: ");
+        scanf(" %[^\n]", novo->end.rua);
+        if (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0) {
+            printf("A rua deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0);
+
     printf("\nDigite o numero: ");
     scanf(" %d", &novo->end.numero);
-    printf("\nDigite o bairro: ");
-    scanf(" %[^\n]", novo->end.bairro);
+    do {
+        printf("\nDigite o bairro: ");
+        scanf(" %[^\n]", novo->end.bairro);
+        if (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0) {
+            printf("O bairro deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0);
+
     do {
         printf("\nDigite o CEP: ");
         scanf(" %s", novo->end.cep);
@@ -529,12 +541,12 @@ cliente *cadastrarClienteFim(cliente *inicio)
     do {
         printf("\nDigite o telefone do Cliente: ");
         scanf(" %s", novo->telefone);
-    } while (validarTelefone(novo->telefone) == 0);
+    } while (validarTelefoneCPF(novo->telefone) == 0);
 
     do {
         printf("\nDigite o CPF do Cliente: ");
         scanf(" %s", novo->cpf);
-    } while (validarCPF(novo->cpf) == 0);
+    } while (validarTelefoneCPF(novo->cpf) == 0);
 
     do {
         printf("\nDigite o email do Cliente: ");
@@ -542,12 +554,22 @@ cliente *cadastrarClienteFim(cliente *inicio)
     } while (validarEmail(novo->email) == 0);
 
     printf("\nVamos preencher o endereço!");
-    printf("\nDigite a rua: ");
-    scanf(" %[^\n]", novo->end.rua);
+    do {
+        printf("\nDigite a rua: ");
+        scanf(" %[^\n]", novo->end.rua);
+        if (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0) {
+            printf("A rua deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0);
     printf("\nDigite o numero: ");
     scanf(" %d", &novo->end.numero);
-    printf("\nDigite o bairro: ");
-    scanf(" %[^\n]", novo->end.bairro);
+    do {
+        printf("\nDigite o bairro: ");
+        scanf(" %[^\n]", novo->end.bairro);
+        if (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0) {
+            printf("O bairro deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0);
     do {
         printf("\nDigite o CEP: ");
         scanf(" %s", novo->end.cep);
@@ -598,12 +620,12 @@ cliente *cadastrarClienteMeio(cliente *inicio, int posicao)
     do {
         printf("\nDigite o telefone do Cliente: ");
         scanf(" %s", novo->telefone);
-    } while (validarTelefone(novo->telefone) == 0);
+    } while (validarTelefoneCPF(novo->telefone) == 0);
 
     do {
         printf("\nDigite o CPF do Cliente: ");
         scanf(" %s", novo->cpf);
-    } while (validarCPF(novo->cpf) == 0);
+    } while (validarTelefoneCPF(novo->cpf) == 0);
 
     do {
         printf("\nDigite o email do Cliente: ");
@@ -611,12 +633,22 @@ cliente *cadastrarClienteMeio(cliente *inicio, int posicao)
     } while (validarEmail(novo->email) == 0);
 
     printf("\nVamos preencher o endereço!");
-    printf("\nDigite a rua: ");
-    scanf(" %[^\n]", novo->end.rua);
+    do {
+        printf("\nDigite a rua: ");
+        scanf(" %[^\n]", novo->end.rua);
+        if (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0) {
+            printf("A rua deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.rua) > 20 || strlen(novo->end.rua) <= 0);
     printf("\nDigite o numero: ");
     scanf(" %d", &novo->end.numero);
-    printf("\nDigite o bairro: ");
-    scanf(" %[^\n]", novo->end.bairro);
+    do {
+        printf("\nDigite o bairro: ");
+        scanf(" %[^\n]", novo->end.bairro);
+        if (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0) {
+            printf("O bairro deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(novo->end.bairro) > 20 || strlen(novo->end.bairro) <= 0);
     do {
         printf("\nDigite o CEP: ");
         scanf(" %s", novo->end.cep);
@@ -682,20 +714,39 @@ void alterarCliente (cliente *listaCliente) {
     printf("CEP: %s\n", atual->end.cep);
 
     printf("\nInforme os novos dados:\n");
-    printf("Digite o novo nome: ");
-    scanf(" %[^\n]", atual->nome);
-    printf("Digite o novo telefone: ");
-    scanf("%s", atual->telefone);
-    printf("Digite o novo CPF: ");
-    scanf("%s", atual->cpf);
-    printf("Digite o novo email: ");
-    scanf("%s", atual->email);
-    printf("Digite a nova rua: ");
-    scanf(" %[^\n]", atual->end.rua);
+    do {
+        printf("\nDigite o nome do Cliente: ");
+        scanf(" %[^\n]", atual->nome);
+    } while (validarNome(atual->nome) == 0);
+    do {
+        printf("Digite o novo telefone: ");
+        scanf("%s", atual->telefone);
+    } while (validarTelefoneCPF(atual->telefone));
+    do {
+        printf("Digite o novo CPF: ");
+        scanf("%s", atual->cpf);
+    } while (validarTelefoneCPF(atual->cpf));
+
+    do {
+        printf("\nDigite o email do Cliente: ");
+        scanf(" %s", atual->email);
+    } while (validarEmail(atual->email) == 0);
+    do {
+        printf("\nDigite a rua: ");
+        scanf(" %[^\n]", atual->end.rua);
+        if (strlen(atual->end.rua) > 20 || strlen(atual->end.rua) <= 0) {
+            printf("A rua deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(atual->end.rua) > 20 || strlen(atual->end.rua) <= 0);
     printf("Digite o novo numero: ");
     scanf("%d", &atual->end.numero);
-    printf("Digite o novo bairro: ");
-    scanf(" %[^\n]", atual->end.bairro);
+    do {
+        printf("\nDigite o bairro: ");
+        scanf(" %[^\n]", atual->end.bairro);
+        if (strlen(atual->end.bairro) > 20 || strlen(atual->end.bairro) <= 0) {
+            printf("O bairro deve ser prenchida e ter no maximo 20 caracteres");
+        }
+    } while (strlen(atual->end.bairro) > 20 || strlen(atual->end.bairro) <= 0);
     printf("Digite o novo CEP: ");
     scanf(" %[^\n]", atual->end.cep);
 
@@ -998,8 +1049,14 @@ produto *cadastrarProdutoInicio(produto *inicio)
     novo->proximo = inicio;
     novo->anterior = NULL;
     printf("\nVoce esta cadastrando um novo Produto pelo inicio da lista!");
-    printf("\nDigite o nome do Produto: ");
-    scanf(" %[^\n]", novo->nome);
+    do {
+        printf("\nDigite o nome do Produto: ");
+        scanf(" %[^\n]", novo->nome);
+        if (strlen(novo->nome) == 0 || strlen(novo->nome) > 50) {
+            printf("o nome deve ser preenchido e ter no maximo 50 caracteres");
+        }
+    } while (strlen(novo->nome) == 0 || strlen(novo->nome) > 50);
+
     do {
         printf("Digite a midia do Produto: ");
         scanf(" %s", novo->midia);
@@ -1013,7 +1070,7 @@ produto *cadastrarProdutoInicio(produto *inicio)
     printf("Digite a quantidade do Produto no estoque: ");
     scanf(" %d", &novo->qtdeEstoque);
     printf("\nProduto cadastrado com sucesso!");
- 
+
     produto *atual = novo;
     int id = 1;
     while (atual != NULL) {
@@ -1023,7 +1080,7 @@ produto *cadastrarProdutoInicio(produto *inicio)
 
     return novo;
 }
- 
+
 produto *cadastrarProdutoFim(produto *inicio)
 {
     produto *novo = (produto *)malloc(sizeof(produto));
@@ -1037,14 +1094,23 @@ produto *cadastrarProdutoFim(produto *inicio)
     novo->anterior = NULL;
 
     printf("\nVoce esta cadastrando um novo Produto no fim da lista!");
-    printf("\nDigite o nome do Produto: ");
-    scanf(" %[^\n]", novo->nome);
-    printf("Digite a midia do Produto: ");
-    scanf(" %s", novo->midia);
+    do {
+        printf("\nDigite o nome do Produto: ");
+        scanf(" %[^\n]", novo->nome);
+        if (strlen(novo->nome) == 0 || strlen(novo->nome) > 50) {
+            printf("o nome deve ser preenchido e ter no maximo 50 caracteres");
+        }
+    } while (strlen(novo->nome) == 0 || strlen(novo->nome) > 50);
+    do {
+        printf("Digite a midia do Produto: ");
+        scanf(" %s", novo->midia);
+    } while (validarMidia(novo->midia) == 0);
     printf("Digite o genero do Produto: ");
     scanf(" %s", novo->genero);
-    printf("Digite o preco do Produto: ");
-    scanf(" %f", &novo->preco);
+    do {
+        printf("Digite o preco do Produto: ");
+        scanf(" %f", &novo->preco);
+    } while (validarPreco(&novo->preco) == 0);
     printf("Digite a quantidade do Produto no estoque: ");
     scanf(" %d", &novo->qtdeEstoque);
 
@@ -1084,14 +1150,23 @@ produto *cadastrarProdutoMeio(produto *inicio, int posicao)
     novo->anterior = NULL;
 
     printf("\nVoce esta cadastrando um novo Produto no meio da lista!");
-    printf("\nDigite o nome do Produto: ");
-    scanf(" %[^\n]", novo->nome);
-    printf("Digite a midia do Produto: ");
-    scanf(" %s", novo->midia);
+    do {
+        printf("\nDigite o nome do Produto: ");
+        scanf(" %[^\n]", novo->nome);
+        if (strlen(novo->nome) == 0 || strlen(novo->nome) > 50) {
+            printf("o nome deve ser preenchido e ter no maximo 50 caracteres");
+        }
+    } while (strlen(novo->nome) == 0 || strlen(novo->nome) > 50);
+    do {
+        printf("Digite a midia do Produto: ");
+        scanf(" %s", novo->midia);
+    } while (validarMidia(novo->midia) == 0);
     printf("Digite o genero do Produto: ");
     scanf(" %s", novo->genero);
-    printf("Digite o preco do Produto: ");
-    scanf(" %f", &novo->preco);
+    do {
+        printf("Digite o preco do Produto: ");
+        scanf(" %f", &novo->preco);
+    } while (validarPreco(&novo->preco) == 0);
     printf("Digite a quantidade do Produto no estoque: ");
     scanf(" %d", &novo->qtdeEstoque);
 
@@ -1151,14 +1226,23 @@ void alterarProduto (produto *listaProduto) {
     printf("Quantidade em estoque: %d\n", atual->qtdeEstoque);
 
     printf("\nInforme os novos dados:\n");
-    printf("Digite o novo nome: ");
-    scanf(" %[^\n]", atual->nome);
-    printf("Digite a nova midia: ");
-    scanf("%s", atual->midia);
+    do {
+        printf("\nDigite o nome do Produto: ");
+        scanf(" %[^\n]", atual->nome);
+        if (strlen(atual->nome) == 0 || strlen(atual->nome) > 50) {
+            printf("o nome deve ser preenchido e ter no maximo 50 caracteres");
+        }
+    } while (strlen(atual->nome) == 0 || strlen(atual->nome) > 50);
+    do {
+        printf("Digite a midia do Produto: ");
+        scanf(" %s", atual->midia);
+    } while (validarMidia(atual->midia) == 0);
     printf("Digite o novo genero: ");
     scanf("%s", atual->genero);
-    printf("Digite o novo preco: ");
-    scanf("%f", &atual->preco);
+    do {
+        printf("Digite o preco do Produto: ");
+        scanf(" %f", &atual->preco);
+    } while (validarPreco(&atual->preco) == 0);
     printf("Digite a nova quantidade em estoque: ");
     scanf("%d", &atual->qtdeEstoque);
 
@@ -2260,10 +2344,9 @@ void liberarPedidos(pedido *lista)
     }
 }
 
-
 int validarNome(char *nome) {
-    if (strlen(nome) == 0 || strlen(nome) > 99) {
-        printf("\nNome invalido! Digite apenas letras.");
+    if (strlen(nome) == 0 || strlen(nome) > 50) {
+        printf("\nNome invalido!");
         return 0;
     }
 
@@ -2276,7 +2359,7 @@ int validarNome(char *nome) {
     return 1;
 }
 
-int validarTelefone(char *telefone) {
+int validarTelefoneCPF(char *telefone) {
     if (strlen(telefone) != 11) {
         printf("\nTelefone invalido!");
         return 0;
@@ -2291,23 +2374,8 @@ int validarTelefone(char *telefone) {
     return 1;
 }
 
-int validarCPF(char *cpf) {
-    if (strlen(cpf) != 11) {
-        printf("\nO cpf deve ter 11 caracteres.");
-        return 0;
-    }
-
-    for (int i = 0; cpf[i] != '\0'; i++) {
-        if (!isdigit(cpf[i])) {
-            printf("\nDigite apenas numeros.");
-            return 0;
-        }
-    }
-    return 1;
-}
-
 int validarEmail(char *email) {
-    if (strlen(email) < 5 || strlen(email) > 99) {
+    if (strlen(email) < 5 || strlen(email) > 50) {
         printf("Email invalido!\n");
         return 0;
     }
@@ -2349,8 +2417,9 @@ int validarMidia(char *midia) {
     }
     return 1;
 }
- 
+
 int validarPreco(float *preco) {
+
     if (preco <= 0) {
         printf("O preço não pode ser negativo ou igual a zero\n");
         return 0;
